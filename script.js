@@ -1,15 +1,4 @@
-/* const teamCard = document.createElement("div");
-teamCard.className = "team-card";
-document.querySelector(".team-container").append(teamCard);
-
-const cardImage = document.createElement("div");
-cardImage.className = "card-image";
-teamCard.append(cardImage);
-
-const cardText = document.createElement("div");
-cardText.className = "card-text";
-
-teamCard.append(cardText); */
+/* Oggetti */
 
 const members = [{
         firstname: "Wayne",
@@ -43,25 +32,48 @@ const members = [{
     },
     {
         firstname: "Barbara",
-        altroCampo: "ciao",
         lastname: "Ramos",
         role: "Graphic Designer",
         image: "./img/barbara-ramos-graphic-designer.jpg",
     },
 ];
 
+/* ciclo gli oggetti */
+
 for (const index in members) {
-    document.querySelector(".team-container").innerHTML += generateMember(
-        members[index]
-    );
+    const htmlGenerato = getCardHtml(members[index]);
+
+    document.querySelector(".team-container").innerHTML += htmlGenerato;
 }
+
+function getCardHtml(member) {
+    return `<div class="team-card">
+      <div class="card-image">
+          <img src="${member.image}" />
+      </div>
+      <div class="card-text">
+          <h3>${member.firstname} ${member.lastname}</h3>
+          <p>${member.role}</p>
+      </div>
+  </div>`;
+}
+
+/* Genera le immagini */
+
+function generateImage(membroSingolo) {
+    return `
+    <div><img src="${membroSingolo.image}"></div>
+  `;
+}
+
+/* Genera  */
 
 function generateMember(membroSingolo) {
     return `
   <div>    
-    <div><img src="${membroSingolo.image}"></div>
-    <div>${membroSingolo.firstname}</div>
-    <div>${membroSingolo.lastname}</div>
+    <h3>${membroSingolo.firstname}</h3>
+    <h3>${membroSingolo.lastname}</h3>
+    <p>${membroSingolo.role}</p>
   </div>
   `;
 }
