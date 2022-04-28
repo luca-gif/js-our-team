@@ -1,5 +1,3 @@
-/* Oggetti */
-
 const members = [{
         firstname: "Wayne",
         lastname: "Barnett",
@@ -38,42 +36,46 @@ const members = [{
     },
 ];
 
-/* ciclo gli oggetti */
+/* 
+Aggiungo membro al click
+*/
+
+document
+    .getElementById("addMemberButton")
+    .addEventListener("click", function() {
+        const name = document.getElementById("name").value;
+        const surname = document.getElementById("surname").value;
+        const role = document.getElementById("role").value;
+        const image = document.getElementById("image").value;
+
+        let newMember = {
+            firstname: name,
+            lastname: surname,
+            role: role,
+            image: image,
+        };
+        members.push(newMember);
+
+        console.log(members);
+    });
+
+/*
+ciclo gli oggetti
+*/
 
 for (const index in members) {
     const htmlGenerato = getCardHtml(members[index]);
-
     document.querySelector(".team-container").innerHTML += htmlGenerato;
 }
 
 function getCardHtml(member) {
     return `<div class="team-card">
       <div class="card-image">
-          <img src="${member.image}" />
+          <img src="${member.image}"/>
       </div>
       <div class="card-text">
           <h3>${member.firstname} ${member.lastname}</h3>
           <p>${member.role}</p>
       </div>
   </div>`;
-}
-
-/* Genera le immagini */
-
-function generateImage(membroSingolo) {
-    return `
-    <div><img src="${membroSingolo.image}"></div>
-  `;
-}
-
-/* Genera  */
-
-function generateMember(membroSingolo) {
-    return `
-  <div>    
-    <h3>${membroSingolo.firstname}</h3>
-    <h3>${membroSingolo.lastname}</h3>
-    <p>${membroSingolo.role}</p>
-  </div>
-  `;
 }
